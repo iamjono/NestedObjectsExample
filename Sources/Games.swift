@@ -43,4 +43,20 @@ class Game: SQLiteStORM {
 		}
 		return scores.rows()
 	}
+
+	public func asDict() -> [String:Any]{
+		var o = [String:Any]()
+		o["id"] = id
+		o["name"] = name
+		var scores = [[String:Any]]()
+		_scores.forEach{
+			score in
+			var s = [String:Any]()
+			s["user"] = score.user
+			s["score"] = score.score
+			scores.append(s)
+		}
+		o["scores"] = scores
+		return o
+	}
 }
